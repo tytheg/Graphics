@@ -20,12 +20,12 @@ using std::endl;
 
 #define NORMALS
 
-double ceil_441(double f)
+double ceil_1(double f)
 {
     return ceil(f-0.00001);
 }
 
-double floor_441(double f)
+double floor_1(double f)
 {
     return floor(f+0.00001);
 }
@@ -562,9 +562,9 @@ void colorPixel(unsigned char *buffer, double *colors, int width, int x, int y, 
 	{
 		zbuffer[(width*y) + x] = z;
 
-		r = (ceil_441(colors[0] * 255 * shading));
-		g = (ceil_441(colors[1] * 255 * shading));
-		b = (ceil_441(colors[2] * 255 * shading));
+		r = (ceil_1(colors[0] * 255 * shading));
+		g = (ceil_1(colors[1] * 255 * shading));
+		b = (ceil_1(colors[2] * 255 * shading));
 
 		if (r > 255)
 			r = 255;
@@ -642,8 +642,8 @@ void RasterizeGoingDown(double *p1, double *p2, double *p3, unsigned char *buffe
 	toprcolor = points[5];
 	toprshade = points[6][2];
 
-	double rowmin = ceil_441(bottom[1]);
-	double rowmax = floor_441(topl[1]);
+	double rowmin = ceil_1(bottom[1]);
+	double rowmax = floor_1(topl[1]);
 	//make sure triangles are in bounds
 	if (rowmax >= 1000)
 		rowmax = 999;
@@ -701,7 +701,7 @@ void RasterizeGoingDown(double *p1, double *p2, double *p3, unsigned char *buffe
 //printf("rz = %f + (%f * (%f - %f))\n", bottom[2], rt, topr[2], bottom[2]);
 
 		//Go through all points along the line
-		for (double k = ceil_441(lend); k <= floor_441(rend); k++)
+		for (double k = ceil_1(lend); k <= floor_1(rend); k++)
 		{
 			//calculate colors for the individual pixel
 			t = (k - lend) / (rend - lend);
@@ -749,8 +749,8 @@ void RasterizeGoingUp(double *p1, double *p2, double *p3, unsigned char *buffer,
 	botrcolor = points[5];
 	botrshade = points[6][2];
 
-	double rowmin = ceil_441(botl[1]);
-	double rowmax = floor_441(top[1]);
+	double rowmin = ceil_1(botl[1]);
+	double rowmax = floor_1(top[1]);
 	if (rowmax >= 1000)
 		rowmax = 999;
 	if (rowmin < 0)
@@ -798,7 +798,7 @@ void RasterizeGoingUp(double *p1, double *p2, double *p3, unsigned char *buffer,
 		rz = top[2] + (rt*(botr[2] - top[2]));
 		rshade = topshade + (rt * (botrshade - topshade));
 
-		for (double k = ceil_441(lend); k <= floor_441(rend); k++)
+		for (double k = ceil_1(lend); k <= floor_1(rend); k++)
 		{
 			t = (k - lend) / (rend - lend);
 			midcolors[0] = lcolors[0] + (t*(rcolors[0] - lcolors[0]));
