@@ -209,7 +209,7 @@ class vtk441Mapper : public vtkOpenGLPolyDataMapper
        glDisable(GL_LIGHT7);
    }
 };
-
+///////////////////////////////////////////////MY CODE STARTS HERE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 class vtk441MapperPart1 : public vtk441Mapper
 {
  public:
@@ -449,6 +449,7 @@ class vtk441MapperPart2 : public vtk441Mapper
 
 vtkStandardNewMacro(vtk441MapperPart2);
 
+///////////////////////////////////////////////MY CODE ENDS HERE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 int main()
 {
