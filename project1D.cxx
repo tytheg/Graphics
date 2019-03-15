@@ -19,12 +19,13 @@ using std::cerr;
 using std::endl;
 
 
-double ceil_441(double f)
+double ceil_1(double f)
 {
     return ceil(f-0.00001);
 }
 
-double floor_441(double f)
+double 
+_1(double f)
 {
     return floor(f+0.00001);
 }
@@ -234,9 +235,9 @@ void colorPixel(unsigned char *buffer, double *colors, int width, int x, int y, 
 	if (z >= zbuffer[(width*y) + x])
 	{
 		zbuffer[(width*y) + x] = z;
-		buffer[(3 * width*y) + 3 * x] = ceil_441(colors[0]*255);
-		buffer[(3 * width*y) + 3 * x + 1] = ceil_441(colors[1] * 255);
-		buffer[(3 * width*y) + 3 * x + 2] = ceil_441(colors[2] * 255);
+		buffer[(3 * width*y) + 3 * x] = ceil_1(colors[0]*255);
+		buffer[(3 * width*y) + 3 * x + 1] = ceil_1(colors[1] * 255);
+		buffer[(3 * width*y) + 3 * x + 2] = ceil_1(colors[2] * 255);
 	}
 }
 
@@ -298,8 +299,8 @@ void RasterizeGoingDown(double *p1, double *p2, double *p3, unsigned char *buffe
 	topr = points[4];
 	toprcolor = points[5];
 
-	double rowmin = ceil_441(bottom[1]);
-	double rowmax = floor_441(topl[1]);
+	double rowmin = ceil_1(bottom[1]);
+	double rowmax = floor_1(topl[1]);
 	//make sure triangles are in bounds
 	if (rowmax >= 1000)
 		rowmax = 999;
@@ -353,7 +354,7 @@ void RasterizeGoingDown(double *p1, double *p2, double *p3, unsigned char *buffe
 //printf("rz = %f + (%f * (%f - %f))\n", bottom[2], rt, topr[2], bottom[2]);
 
 		//Go through all points along the line
-		for (double k = ceil_441(lend); k <= floor_441(rend); k++)
+		for (double k = ceil_1(lend); k <= floor_1(rend); k++)
 		{
 			//calculate colors for the individual pixel
 			t = (k - lend) / (rend - lend);
@@ -434,7 +435,7 @@ void RasterizeGoingUp(double *p1, double *p2, double *p3, unsigned char *buffer,
 		rt = (j - top[1]) / (botr[1] - top[1]);
 		rz = top[2] + (rt*(botr[2] - top[2]));
 
-		for (double k = ceil_441(lend); k <= floor_441(rend); k++)
+		for (double k = ceil_441(lend); k <= floor_1(rend); k++)
 		{
 			t = (k - lend) / (rend - lend);
 			midcolors[0] = lcolors[0] + (t*(rcolors[0] - lcolors[0]));
